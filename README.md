@@ -1,12 +1,7 @@
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* KVDatabase was written in order to easily read and write objects and lists of objects into Android's Shared Preferences. In addition to this, all primitive data types can also be stored and read.
+
 
 ### How do I get set up? ###
 
@@ -17,13 +12,5 @@ This README would normally document whatever steps are necessary to get your app
 * How to run tests
 * Deployment instructions
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
 ### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Any and all feedback is appreciated. If you think something needs to be added, email me at djhill1997@gmail.com
