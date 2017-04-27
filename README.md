@@ -29,7 +29,6 @@ String retrievedString = kvDatabase.getString("keyRetrieve");
 If you want object usage:
 
 
-
 ```
 #!Android
 //Using the following example class:
@@ -39,10 +38,9 @@ public class exampleClass {
 }
 
 
-//Instantiating the KVDB class:
-//KVDatabase(context, Class<T>[] classtype)
+//KVDatabase(context, Class<T> classtype)
  
-KVDatabase kvDatabase = new KVDatabase(getContext(), exampleClass[].class);
+KVDatabase kvDatabase = new KVDatabase(getContext(), exampleClass.class);
 
 //storeObject(T obj, String key)
 exampleClass example = new exampleClass("Example", 21);
@@ -57,17 +55,15 @@ Using lists of objects is slightly more work, as you need to also download the M
 ```
 #!Android
 
+//KVDatabase(context, Class<T>[] classtype)
 KVDatabase kvDatabase = new KVDatabase(getContext(), exampleClass[].class);
 kvDatabase.storeObjectsList(List<T> listToStore, String key)
 
 //To retrieve the list, you need an instantiation of MyList, as the return for getObjectsList is an AbstractList
-MyList<exampleClass> listUsage = new MyList<exampleClass>(new ArrayList<exampleClass>());
-
-List<exampleClass> tempList = kvDatabase.getObjectsList(key);
-listUsage = new MyList<exampleClass>(tempList);
+MyList<exampleClass> listUsage = new MyList<exampleClass>(kvDatabase.getObjectsList(key));
 ```
 
-Before you can use Object storage you must import GSON into your build.gradle dependencies
+Before you can use object storage you must import Gson into your build.gradle dependencies
 
 ```
 #!Android
