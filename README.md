@@ -44,7 +44,7 @@ KVDatabase kvDatabase = new KVDatabase(getContext(), exampleClass.class);
 
 //storeObject(T obj, String key)
 exampleClass example = new exampleClass("Example", 21);
-storeObject(example , "keyObj");
+kvDatabase.storeObject(example , "keyObj");
 
 //getObject(String key)
 exampleClass example = (exampleClass) getObject("keyObj");
