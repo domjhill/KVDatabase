@@ -1,6 +1,6 @@
 * KVDatabase (KVDB) was written in order to easily read and write objects and list of objects of any type into Android's Shared Preferences. In addition to this, all primitive data types can be stored and read.
 
-* KVDBuses Java's generic type in order to convert any type of object/list of object into their JSON representation, without the need to modify any code inside the library. 
+* KVDB uses Java's generic type in order to convert any type of object/list of object into their JSON representation, without the need to modify any code inside the library. 
 
 
 ### Usage: ###
