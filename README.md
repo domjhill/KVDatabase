@@ -49,7 +49,7 @@ exampleClass example = new exampleClass("Example", 21);
 storeObject(example , "keyObj");
 
 //getObject(String key)
-exampleClass example = getObject("keyObj");
+exampleClass example = (exampleClass) getObject("keyObj");
 
 ```
 Using lists of objects is slightly more work, as you need to also download the MyList.java class
@@ -74,7 +74,6 @@ Before you can use Object storage you must import GSON into your build.gradle de
 
 dependencies {
     compile 'com.google.code.gson:gson:2.4'
-
 }
 ```
 
