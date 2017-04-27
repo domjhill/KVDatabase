@@ -67,6 +67,18 @@ List<exampleClass> tempList = kvDatabase.getObjectsList(key);
 listUsage = new MyList<exampleClass>(tempList);
 ```
 
+Before you can use Object storage you must import GSON into your build.gradle dependencies
+
+```
+#!Android
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.4'
+
+}
+```
+
+Or find the library [here](http://search.maven.org/#artifactdetails%7Ccom.google.code.gson%7Cgson%7C2.8.0%7C) and place the Gson.jar file into your "libs" folder.
 
 ### Who do I talk to? ###
 Any and all feedback is appreciated. If you think something needs to be added, email me at djhill1997@gmail.com
