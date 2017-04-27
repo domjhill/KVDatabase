@@ -52,6 +52,20 @@ storeObject(example , "keyObj");
 exampleClass example = getObject("keyObj");
 
 ```
+Using lists of objects is slightly more work, as you need to also download the MyList.java class
+
+```
+#!Android
+
+KVDatabase kvDatabase = new KVDatabase(getContext(), exampleClass[].class);
+kvDatabase.storeObjectsList(List<T> listToStore, String key)
+
+//To retrieve the list, you need an instantiation of MyList, as the return for getObjectsList is an AbstractList
+MyList<exampleClass> listUsage = new MyList<exampleClass>(new ArrayList<exampleClass>());
+
+List<exampleClass> tempList = kvDatabase.getObjectsList(key);
+listUsage = new MyList<exampleClass>(tempList);
+```
 
 
 ### Who do I talk to? ###
