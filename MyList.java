@@ -4,25 +4,35 @@ import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by metrical on 4/24/2017.
+ * MyList: Created in order to use an abstract list. Set, add, and remove methods have been overriden
+ */
+
 public class MyList<T> extends AbstractList<T> {
     private List<T> list;
 
     MyList(List<T> list)
     {
+
         this.list = list;
+
     }
     @Override
     public T get(int index) {
+
         return list.get(index);
     }
 
     @Override
     public int size() {
+
         return list.size();
     }
 
     @Override
     public T set(int index, T element) {
+
         T oldElement = list.get(index);
         list.set(index, element);
         return oldElement;
@@ -30,6 +40,7 @@ public class MyList<T> extends AbstractList<T> {
 
     @Override
     public boolean add(T element) {
+
         List<T> newList = new ArrayList<T>();
         newList.addAll(list);
         newList.add(element);
@@ -39,10 +50,12 @@ public class MyList<T> extends AbstractList<T> {
 
     @Override
     public void add(int index, T element) {
+
         List<T> newList = new ArrayList<T>();
         newList.addAll(list);
         newList.add(index, element);
         list = newList;
+
     }
 
     @Override
@@ -57,5 +70,7 @@ public class MyList<T> extends AbstractList<T> {
 
         list = newList;
         return removedElement;
+
     }
 }
+

@@ -15,16 +15,16 @@ import java.util.List;
 /**
  * Created by metrical on 4/24/2017.
  * KVDatabase: Key-Value Database.
- * Using SharedPreferences to store all data types, as well as using Gson to serialize objects
+ * Using SharedPreferences to store all primitive data types, as well as using Gson to serialize and deserialize objects
  */
 
 public class KVDatabase<T> implements ParameterizedType
 {
-
     private SharedPreferences sharedPreferences;
     private Gson gson = new Gson();
     private Type classType;
 
+    //      CONSTRUCTORS        //
     public KVDatabase(Context context)
     {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -36,11 +36,13 @@ public class KVDatabase<T> implements ParameterizedType
         this.classType = classType;
     }
 
-    //SET METHODS
+    //      SET METHODS     //
+
     /**
      * @param value :   SharedPreferences Value of type Int
      * @param key   :   SharedPreferences Key
      */
+
     public void storeInt(int value, String key)
     {
         isNullKey(key);
@@ -92,59 +94,11 @@ public class KVDatabase<T> implements ParameterizedType
         sharedPreferences.edit().putLong(key, value).apply();
     }
 
-
-    //GET METHODS
-
     /**
+     * @param obj           :   Object to store
      * @param key           :   SharedPreferences Key
-     * for defaultValue     :   Will be 0 if key not found
-     * @return              :   Returns value of key, or 0 if no key found
+     * @param <T>           :   Generic type
      */
-
-    public int getInt(String key)
-    {
-        return sharedPreferences.getInt(key, 0);
-    }
-    /**
-     * @param key           :   SharedPreferences Key
-     * for defaultValue     :   Will be "" if key not found
-     * @return              :   Returns value of key, or "" if no key found
-     */
-
-    public String getString(String key)
-    {
-        return sharedPreferences.getString(key, "");
-    }
-    /**
-     * @param key           :   SharedPreferences Key
-     * for defaultValue     :   Will be false if key not found
-     * @return              :   Returns value of key, or false if no key found
-     */
-
-    public boolean getBool(String key)
-    {
-        return sharedPreferences.getBoolean(key, false);
-    }
-    /**
-     * @param key           :   SharedPreferences Key
-     * for defaultValue     :   Will be 0 if key not found
-     * @return              :   Returns value of key, or 0 if no key found
-     */
-
-    public float getFloat(String key)
-    {
-        return sharedPreferences.getFloat(key, 0);
-    }
-    /**
-     * @param key           :   SharedPreferences Key
-     * for defaultValue     :   Will be 0 if key not found
-     * @return              :   Returns value of key, or 0 if no key found
-     */
-
-    public long getLong(String key)
-    {
-        return sharedPreferences.getLong(key, 0);
-    }
 
     public <T> void storeObject(T obj, String key)
     {
@@ -158,13 +112,11 @@ public class KVDatabase<T> implements ParameterizedType
         else throw new NullPointerException();
     }
 
-    public T getObject(String key)
-    {
-        isOverloaded();
-        String jsonObject = getString(key);
-
-        return gson.fromJson(jsonObject, classType);
-    }
+    /**
+     * @param value         :   List of objects to store
+     * @param key           :   SharedPreferences Key
+     * @param <T>           :   Generic type
+     */
 
     public <T> void storeObjectsList(List<T> value, String key)
     {
@@ -174,24 +126,99 @@ public class KVDatabase<T> implements ParameterizedType
         storeString(jsonObjs, key);
     }
 
+    //      GET METHODS     //
 
+    /**
+     * @param key           :   SharedPreferences Key
+     * for defaultValue     :   Will be 0 if key not found
+     * @return              :   Returns value of key, or 0 if no key found
+     */
+
+    public int getInt(String key)
+    {
+        return sharedPreferences.getInt(key, 0);
+    }
+
+    /**
+     * @param key           :   SharedPreferences Key
+     * for defaultValue     :   Will be "" if key not found
+     * @return              :   Returns value of key, or "" if no key found
+     */
+
+    public String getString(String key)
+    {
+        return sharedPreferences.getString(key, "");
+    }
+
+    /**
+     * @param key           :   SharedPreferences Key
+     * for defaultValue     :   Will be false if key not found
+     * @return              :   Returns value of key, or false if no key found
+     */
+
+    public boolean getBool(String key)
+    {
+        return sharedPreferences.getBoolean(key, false);
+    }
+
+    /**
+     * @param key           :   SharedPreferences Key
+     * for defaultValue     :   Will be 0 if key not found
+     * @return              :   Returns value of key, or 0 if no key found
+     */
+
+    public float getFloat(String key)
+    {
+        return sharedPreferences.getFloat(key, 0);
+    }
+
+    /**
+     * @param key           :   SharedPreferences Key
+     * for defaultValue     :   Will be 0 if key not found
+     * @return              :   Returns value of key, or 0 if no key found
+     */
+
+    public long getLong(String key)
+    {
+        return sharedPreferences.getLong(key, 0);
+    }
+
+    /**
+     * @param key           :   SharedPreferences key
+     * @return              :   Returns generic type object
+     */
+
+    public T getObject(String key)
+    {
+        isOverloaded();
+        String jsonObject = getString(key);
+
+        return gson.fromJson(jsonObject, classType);
+    }
+
+    /**
+     * @param key           :   SharedPreferences Key
+     * @param <T>           :   Generic type
+     * @return              :   List of objects of generic type
+     */
 
     public <T> List<T> getObjectsList(String key)
     {
+
         isOverloaded();
         isNullKey(key);
         final T[] jsonToObject = gson.fromJson(getString(key), classType);
 
         return Arrays.asList(jsonToObject);
-
     }
 
     /**
-     * Checks for key or value being null. If so, throw exception
+	 * Ensures key, value, or classType are not null. Else throws an exception.
      */
 
     private void isOverloaded()
     {
+
         if (this.classType == null)
             throw new NullPointerException();
     }
@@ -229,3 +256,4 @@ public class KVDatabase<T> implements ParameterizedType
         return null;
     }
 }
+
