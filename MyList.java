@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by metrical on 4/24/2017.
+ * Created by Dominic Hill on 4/24/2017.
  * MyList: Created in order to use an abstract list. Set, add, and remove methods have been overriden
  */
 

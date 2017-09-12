@@ -13,7 +13,7 @@ import java.util.List;
 
 
 /**
- * Created by metrical on 4/24/2017.
+ * Created by Dominic Hill on 4/24/2017.
  * KVDatabase: Key-Value Database.
  * Using SharedPreferences to store all primitive data types, as well as using Gson to serialize and deserialize objects
  */
